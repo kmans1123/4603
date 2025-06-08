@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>346두4603</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'scale-in': 'scaleIn 0.2s ease-out',
+                        'gradient': 'gradient 15s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .backdrop-blur-sm { backdrop-filter: blur(4px); }
+        .backdrop-blur-md { backdrop-filter: blur(12px); }
+        .bg-gradient-to-br { background: linear-gradient(to bottom right, var(--tw-gradient-stops)); }
+        .bg-gradient-to-r { background: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .bg-gradient-to-t { background: linear-gradient(to top, var(--tw-gradient-stops)); }
+        .bg-gradient-to-b { background: linear-gradient(to bottom, var(--tw-gradient-stops)); }
+        .bg-clip-text { background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        
+        .photo-card:hover .photo-overlay { opacity: 1; }
+        .photo-card:hover img { transform: scale(1.05); }
+        .timeline-line { background: linear-gradient(to bottom, #8b5cf6, #ec4899, #f97316); }
+        
+        /* 동적 배경 */
+        .dynamic-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #8b5cf6, #ec4899);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        /* 배경 장식 요소들 */
+        .bg-decoration {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .bg-decoration:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #8b5cf6, #ec4899);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .bg-decoration:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #ec4899, #f97316);
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .bg-decoration:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #23a6d5, #23d5ab);
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        .bg-decoration:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #23d5ab, #8b5cf6);
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+        
+        /* 헤더 버튼 스타일 */
+        .header-button {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            padding: 8px;
+        }
+        
+        .header-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* 자동 슬라이더 스타일 */
+        .auto-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slider-image {
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .slider-content {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(236, 72, 153, 0.9));
+        }
+
+        /* Masonry 그리드 시스템 */
+        /* 🎯 반응형 갤러리 그리드 시스템 */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+            break-inside: avoid;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 4;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .masonry-grid {
+                column-count: 5;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            width: 100%;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .masonry-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 📸 반응형 이미지 컨테이너 */
+        .responsive-image-container {
+            position: relative;
+            overflow: hidden;
+            background: #f3f4f6;
+            min-height: 200px;
+        }
+
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            opacity: 1 !important; /* 강제로 표시 */
+        }
+
+        /* 🎨 사진 비율별 스타일 */
+        .photo-portrait {
+            /* 세로 사진 */
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .photo-landscape {
+            /* 가로 사진 */
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .photo-square {
+            /* 정사각형 사진 */
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .photo-panorama {
+            /* 파노라마 사진 */
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* 사진 카드 내용 */
+        .photo-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .masonry-item:hover .photo-card-content {
+            opacity: 1;
+        }
+
+        .photo-category-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #374151;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .masonry-item:hover .photo-category-badge {
+            opacity: 1;
+        }
+
+        /* 로딩 상태 제거 - 이미지가 바로 표시되도록 */
+        .image-loading {
+            opacity: 1 !important;
+        }
+
+        /* 페이드인 애니메이션 */
+        .fade-in {
+            opacity: 1 !important;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+        .fade-in-delay-4 { animation-delay: 0.4s; }
+        .fade-in-delay-5 { animation-delay: 0.5s; }
+
+        /* 슬라이드쇼 이미지 스타일 */
+        #slideshow-image {
+            max-width: 90vw;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* 세로 사진을 위한 특별 처리 */
+        #slideshow-image.portrait-image {
+            max-height: 80vh;
+            max-width: 60vw;
+        }
+
+        /* 슬라이더 이미지 개선 */
+        .slider-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        /* 슬라이더 이미지 비율별 처리 개선 */
+        .slider-image-portrait {
+            object-fit: contain !important;
+            background: #f3f4f6;
+        }
+
+        .slider-image-landscape {
+            object-fit: cover !important;
+        }
+
+        /* 극단적인 가로 비율(파노라마)도 contain으로 처리 */
+        .slider-image-panorama {
+            object-fit: contain !important;
+            background: #f3f4f6;
+        }
+
+        /* 이미지가 항상 표시되도록 강제 */
+        .gallery-image {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen dynamic-bg relative overflow-x-hidden">
+    <!-- 배경 장식 요소들 -->
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="header-button flex items-center space-x-3" onclick="refreshPage()">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                            Travel Gallery
+                        </h1>
+                        <p class="text-sm text-gray-600">전국 돌아다니기</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span id="photo-count" class="px-3 py-1 bg-white/50 border border-gray-200 rounded-full text-sm">
+                        총 0장
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-100 to-pink-100 bg-clip-text text-transparent mb-4 drop-shadow-lg">
+                전국 탐방 일지
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md">
+                The moments I saw
+            </p>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="bg-white/70 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div id="total-photos" class="text-2xl font-bold text-gray-800">0</div>
+                    <div class="text-sm text-gray-600">총 사진</div>
+                </div>
+
+                <div class="bg-white/70 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+                        </svg>
+                    </div>
+                    <div id="car-photos" class="text-2xl font-bold text-gray-800">0</div>
+                    <div class="text-sm text-gray-600">자동차</div>
+                </div>
+
+                <div class="bg-white/70 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3l14 9-14 9V3z"></path>
+                        </svg>
+                    </div>
+                    <div id="landscape-photos" class="text-2xl font-bold text-gray-800">0</div>
+                    <div class="text-sm text-gray-600">풍경</div>
+                </div>
+
+                <div class="bg-white/70 backdrop-blur-sm border-0 shadow-lg rounded-lg p-6 text-center cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" onclick="showCitiesModal()">
+                    <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div id="unique-locations" class="text-2xl font-bold text-gray-800">0</div>
+                    <div class="text-sm text-gray-600">방문 도시</div>
+                    <div class="text-xs text-purple-600 mt-1">클릭해서 보기</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auto Photo Slider -->
+        <div class="mb-12 bg-white/70 backdrop-blur-sm border-0 shadow-xl overflow-hidden rounded-2xl auto-slider" id="auto-slider">
+            <div class="md:flex h-80">
+                <div class="md:w-1/2 relative overflow-hidden slider-image-container">
+                    <img id="slider-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='%236b7280'%3E여행사진%3C/text%3E%3C/svg%3E" alt="" class="w-full h-full object-cover slider-image">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-white/90 text-gray-800 rounded-full text-sm font-medium">
+                            <span id="slider-category-icon">📸</span>
+                            <span id="slider-category-text">사진</span>
+                        </span>
+                    </div>
+                    <div class="absolute bottom-4 right-4 flex space-x-2">
+                        <button onclick="prevSliderPhoto()" class="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button onclick="nextSliderPhoto()" class="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-8 flex flex-col justify-center slider-content">
+                    <div class="flex items-center mb-4">
+                        <span class="inline-block w-fit px-3 py-1 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm">
+                            여행 하이라이트
+                        </span>
+                        <div class="ml-auto flex items-center text-white/80 text-sm">
+                            <span id="slider-counter">1 / 1</span>
+                        </div>
+                    </div>
+                    <h3 id="slider-title" class="text-3xl font-bold text-white mb-3 drop-shadow-lg">사진 제목</h3>
+                    <div class="flex items-center text-white/90 mb-2">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span id="slider-location">위치</span>
+                    </div>
+                    <div class="flex items-center text-white/90 mb-4">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span id="slider-date">날짜</span>
+                    </div>
+                    <p id="slider-description" class="text-white/80 leading-relaxed">
+                        이 사진과 함께한 특별한 순간의 기록입니다.
+                    </p>
+                    <div class="mt-6 flex items-center space-x-2">
+                        <div class="flex space-x-1" id="slider-dots">
+                            <!-- 슬라이더 점들이 여기에 추가됩니다 -->
+                        </div>
+                        <button onclick="toggleSliderAutoPlay()" id="slider-play-button" class="ml-auto w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <svg id="slider-pause-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <svg id="slider-play-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m-6-8h1m4 0h1M9 6h1m4 0h1M9 2h1m4 0h1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="container mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent mb-4 drop-shadow-lg">
+                여행 타임라인
+            </h2>
+            <p class="text-white/80 drop-shadow-md">시간순으로 정리된 나의 여행 기록</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="relative" id="timeline-container">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full timeline-line rounded-full"></div>
+                <!-- Timeline items will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <div class="container mx-auto px-4 pb-8">
+        <div class="w-full">
+            <div class="flex justify-center mb-8">
+                <div class="grid w-full max-w-md grid-cols-3 bg-white/70 backdrop-blur-sm border-0 shadow-lg rounded-full p-1">
+                    <button onclick="setActiveTab('all')" id="tab-all" class="tab-button rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                        전체 (<span id="all-count">0</span>)
+                    </button>
+                    <button onclick="setActiveTab('car')" id="tab-car" class="tab-button rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800">
+                        🚗 자동차 (<span id="car-count">0</span>)
+                    </button>
+                    <button onclick="setActiveTab('landscape')" id="tab-landscape" class="tab-button rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800">
+                        🏔️ 풍경 (<span id="landscape-count">0</span>)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Masonry Gallery Grid -->
+            <div id="gallery-grid" class="masonry-grid">
+                <!-- Photos will be inserted here -->
+            </div>
+
+            <div id="empty-state" class="text-center py-16" style="display: none;">
+                <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-12 h-12 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white/80 mb-2">아직 사진이 없습니다</h3>
+                <p class="text-white/60">images 폴더에 사진을 추가해보세요!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white/60 backdrop-blur-sm border-t border-white/20 mt-16">
+        <div class="container mx-auto px-4 py-8 text-center">
+            <p class="text-gray-700">✨ 순간들을 기록하고 간직하세요 ✨</p>
+        </div>
+    </footer>
+
+    <!-- Slideshow Modal -->
+    <div id="slideshow-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center" style="display: none;">
+        <button onclick="closeSlideshow()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        
+        <button onclick="prevSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-10">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+        
+        <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-10">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+
+        <div class="relative w-full h-full flex items-center justify-center p-8">
+            <div class="relative max-w-6xl max-h-full">
+                <img id="slideshow-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='%236b7280'%3E사진%3C/text%3E%3C/svg%3E" alt="" class="max-w-full max-h-full object-contain rounded-lg">
+                
+                <!-- Photo Info -->
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-lg">
+                    <h3 id="slideshow-title" class="text-2xl font-bold text-white mb-2"></h3>
+                    <div class="flex items-center text-white/80 mb-2">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span id="slideshow-location"></span>
+                    </div>
+                    <div class="flex items-center text-white/80">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span id="slideshow-date"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 bg-black/50 backdrop-blur-sm rounded-full px-6 py-3">
+            <button onclick="toggleAutoPlay()" id="autoplay-button" class="p-2 rounded-full transition-colors text-white hover:bg-white/20">
+                <svg id="play-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m-6-8h1m4 0h1M9 6h1m4 0h1M9 2h1m4 0h1"></path>
+                </svg>
+                <svg id="pause-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </button>
+            <span id="slide-counter" class="text-white text-sm">1 / 1</span>
+        </div>
+    </div>
+
+    <!-- Cities Modal -->
+    <div id="cities-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+                <h2 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    방문한 도시들
+                </h2>
+                <button onclick="hideCitiesModal()" class="text-gray-500 hover:text-gray-700 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <div id="cities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cities will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 🔍 여기 수정: 사진 데이터 - 이 부분을 수정하세요!
+        // ==========================================
+        const photos = [
+            {
+                id: "car1",
+                url: "images/car1.jpg", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "car", // 🔍 여기 수정: "car" 또는 "landscape"
+                title: "그랜저", // 🔍 여기 수정: 사진 제목
+                location: "전남 고창", // 🔍 여기 수정: 촬영 장소
+                date: "2025-05-31", // 🔍 여기 수정: 촬영 날짜 (YYYY-MM-DD 형식)
+                description: "청보리와 함께." // 🔍 여기 수정: 사진 설명
+            },
+            {
+                id: "landscape1",
+                url: "images/landscape1.jpg", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "landscape", // 🔍 여기 수정: "car" 또는 "landscape"
+                title: "청보리", // 🔍 여기 수정: 사진 제목
+                location: "전남 고창", // 🔍 여기 수정: 촬영 장소
+                date: "2025-05-31", // 🔍 여기 수정: 촬영 날짜
+                description: "포토샵으로 주변 사람 다 지웠음음" // 🔍 여기 수정: 사진 설명
+            },
+            {
+                id: "car2",
+                url: "images/car2.jpg", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "car",
+                title: "그랜저", // 🔍 여기 수정: 사진 제목
+                location: "부산 사하구", // 🔍 여기 수정: 촬영 장소
+                date: "2025-02-04", // 🔍 여기 수정: 촬영 날짜
+                description: "일몰과 함께." // 🔍 여기 수정: 사진 설명
+            },
+            {
+                id: "landscape2",
+                url: "images/landscape2.jpg", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "landscape",
+                title: "전국 일주 중", // 🔍 여기 수정: 사진 제목
+                location: "경북 영덕", // 🔍 여기 수정: 촬영 장소
+                date: "2024-03-30", // 🔍 여기 수정: 촬영 날짜
+                description: "전국 일주 중중" // 🔍 여기 수정: 사진 설명
+            },
+            {
+                id: "car3",
+                url: "images/car3.jpg", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "car",
+                title: "그랜저", // 🔍 여기 수정: 사진 제목
+                location: "경남 밀양", // 🔍 여기 수정: 촬영 장소
+                date: "2025-05-17", // 🔍 여기 수정: 촬영 날짜
+                description: "터널 안에서" // 🔍 여기 수정: 사진 설명
+            },
+            {
+                id: "landscape3",
+                url: "images/landscape3.jpg", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "landscape",
+                title: "회룡포 전망대", // 🔍 여기 수정: 사진 제목
+                location: "경북 예천", // 🔍 여기 수정: 촬영 장소
+                date: "2025-01-04", // 🔍 여기 수정: 촬영 날짜
+                description: "바람 많이 불어서 추웠음" // 🔍 여기 수정: 사진 설명
+            },
+            {
+                id: "landscape4",
+                url: "images/landscape4.png", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "landscape",
+                title: "타임캡슐공원", // 🔍 여기 수정: 사진 제목
+                location: "강원도 정선군", // 🔍 여기 수정: 촬영 장소
+                date: "2024-09-30", // 🔍 여기 수정: 촬영 날짜
+                description: "은하수 촬영한 날" // 🔍 여기 수정: 사진 설명
+            },
+            {
+                id: "car4",
+                url: "images/car4.jpg", // 🔍 여기 수정: 실제 사진 경로로 변경
+                category: "car",
+                title: "그랜저", // 🔍 여기 수정: 사진 제목
+                location: "경북 안동", // 🔍 여기 수정: 촬영 장소
+                date: "2024-11-29", // 🔍 여기 수정: 촬영 날짜
+                description: "크리스마스에 맞춰 루돌카" // 🔍 여기 수정: 사진 설명
+            }
+
+            // 🔍 여기 수정: 새로운 사진을 추가하려면 위와 같은 형식으로 추가하세요!
+            // 예시:
+            // ,{
+            //     id: "새사진ID",
+            //     url: "사진경로.jpg",
+            //     category: "car", // 또는 "landscape"
+            //     title: "사진 제목",
+            //     location: "촬영 장소",
+            //     date: "2024-MM-DD",
+            //     description: "사진 설명"
+            // }
+        ];
+
+        // ==========================================
+        // 🔍 여기 수정: 여행 도시 데이터 - 이 부분을 수정하세요!
+        // ==========================================
+        const travelCities = [
+            {
+                name: "전남", // 🔍 여기 수정: 도시 이름
+                region: "전라남도", // 🔍 여기 수정: 지역명
+                photos: 2, // 🔍 여기 수정: 해당 도시 사진 수
+                highlights: ["  ", "  ", "  "], // 🔍 여기 수정: 주요 명소들
+                color: "from-blue-500 to-cyan-500" // 🔍 여기 수정: 카드 색상 (그라데이션)
+            },
+            {
+                name: "부산", // 🔍 여기 수정: 도시 이름
+                region: "부산광역시", // 🔍 여기 수정: 지역명
+                photos: 1, // 🔍 여기 수정: 해당 도시 사진 수
+                highlights: ["  ", "  ", "  "], // 🔍 여기 수정: 주요 명소들
+                color: "from-orange-500 to-red-500" // 🔍 여기 수정: 카드 색상
+            },
+            {
+                name: "경남", // 🔍 여기 수정: 도시 이름
+                region: "경상남도", // 🔍 여기 수정: 지역명
+                photos: 1, // 🔍 여기 수정: 해당 도시 사진 수
+                highlights: ["  ", "  ", "  "], // 🔍 여기 수정: 주요 명소들
+                color: "from-purple-500 to-pink-500" // 🔍 여기 수정: 카드 색상
+            },
+            {
+                name: "경북", // 🔍 여기 수정: 도시 이름
+                region: "경상북도", // 🔍 여기 수정: 지역명
+                photos: 3, // 🔍 여기 수정: 해당 도시 사진 수
+                highlights: ["  ", "  ", "  "], // 🔍 여기 수정: 주요 명소들
+                color: "from-green-500 to-emerald-500" // 🔍 여기 수정: 카드 색상
+            },
+            {
+                name: "강원도", // 🔍 여기 수정: 도시 이름
+                region: "강원도", // 🔍 여��� 수정: 지역명
+                photos: 1, // 🔍 여기 수정: 해당 도시 사진 수
+                highlights: ["  ", "  ", "  "], // 🔍 여기 수정: 주요 명소들
+                color: "from-indigo-500 to-purple-500" // 🔍 여기 수정: 카드 색상
+            }
+
+            // 🔍 여기 수정: 새로운 도시를 추가하려면 위와 같은 형식으로 추가하세요!
+            // 예시:
+            // ,{
+            //     name: "새도시",
+            //     region: "지역명",
+            //     photos: 사진수,
+            //     highlights: ["명소1", "명소2", "명소3"],
+            //     color: "from-색상1 to-색상2"
+            // }
+        ];
+
+        // ==========================================
+        // 🔧 시스템 코드 - 수정하지 마세요!
+        // ==========================================
+
+        // 전역 변수
+        let activeTab = 'all';
+        let currentSlideIndex = 0;
+        let isAutoPlay = false;
+        let autoPlayInterval = null;
+        let filteredPhotos = [];
+        
+        // 자동 슬라이더 변수
+        let currentSliderIndex = 0;
+        let sliderAutoPlay = true;
+        let sliderInterval = null;
+
+        // 🔧 이미지 비율 감지 함수
+        function getImageRatioClass(aspectRatio) {
+            if (aspectRatio < 0.7) {
+                return 'photo-portrait'; // 세로 사진
+            } else if (aspectRatio > 1.8) {
+                return 'photo-panorama'; // 파노라마
+            } else if (aspectRatio >= 0.9 && aspectRatio <= 1.1) {
+                return 'photo-square'; // 정사각형
+            } else {
+                return 'photo-landscape'; // 가로 사진
+            }
+        }
+
+        // 🔧 개선된 이미지 로드 처리 함수
+        function handleImageLoad(img, photo) {
+            try {
+                const aspectRatio = img.naturalWidth / img.naturalHeight;
+                const ratioClass = getImageRatioClass(aspectRatio);
+                
+                // 기존 클래스 제거
+                img.classList.remove('photo-portrait', 'photo-landscape', 'photo-square', 'photo-panorama', 'image-loading');
+                
+                // 비율별 클래스 적용
+                img.classList.add(ratioClass, 'gallery-image');
+                
+                // 이미지 강제 표시
+                img.style.opacity = '1';
+                img.style.visibility = 'visible';
+                
+                // 페이드인 애니메이션 추가
+                const container = img.closest('.masonry-item');
+                if (container) {
+                    container.classList.add('fade-in');
+                }
+                
+                console.log(`📸 이미지 로드 완료: ${photo.title} (비율: ${aspectRatio.toFixed(2)}, 클래스: ${ratioClass})`);
+            } catch (error) {
+                console.error('❌ 이미지 로드 처리 오류:', error);
+                // 오류 발생 시에도 이미지 표시
+                img.style.opacity = '1';
+                img.style.visibility = 'visible';
+            }
+        }
+
+        // 🔧 도시별 사진 수 자동 계산 함수
+        function calculateCityPhotoCounts() {
+            travelCities.forEach(city => {
+                const cityPhotos = photos.filter(photo => 
+                    photo.location.includes(city.name) || 
+                    photo.location.includes(city.region.replace(/광역시|특별시|특별자치도|도$/g, ''))
+                );
+                city.photos = cityPhotos.length;
+            });
+        }
+
+        // 슬라이더 마우스 이벤트 핸들러
+        function pauseSlider() {
+            if (sliderInterval) {
+                clearInterval(sliderInterval);
+                sliderInterval = null;
+            }
+        }
+
+        function resumeSlider() {
+            if (sliderAutoPlay) {
+                startSliderAutoPlay();
+            }
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                console.log('🚀 갤러리 초기화 시작...');
+                console.log('📸 총 사진 수:', photos.length);
+                
+                // 도시별 사진 수 자동 계산
+                calculateCityPhotoCounts();
+                
+                // 각 함수 실행
+                updateStats();
+                renderTimeline();
+                renderCities();
+                setActiveTab('all');
+                initSlider();
+                
+                // 슬라이더 마우스 이벤트 추가
+                const slider = document.getElementById('auto-slider');
+                if (slider) {
+                    slider.addEventListener('mouseenter', pauseSlider);
+                    slider.addEventListener('mouseleave', resumeSlider);
+                }
+                
+                console.log('✅ 갤러리 초기화 완료!');
+            } catch (error) {
+                console.error('❌ 초기화 오류:', error);
+            }
+        });
+
+        // 페이지 새로고침
+        function refreshPage() {
+            location.reload();
+        }
+
+        // 🔧 자동 슬라이더 초기화
+        function initSlider() {
+            try {
+                if (photos.length === 0) {
+                    console.log('⚠️ 사진이 없어서 슬라이더를 초기화하지 않습니다.');
+                    return;
+                }
+                
+                console.log('🎠 슬라이더 초기화 중...');
+                updateSliderContent();
+                createSliderDots();
+                startSliderAutoPlay();
+                console.log('✅ 슬라이더 초기화 완료!');
+            } catch (error) {
+                console.error('❌ 슬라이더 초기화 오류:', error);
+            }
+        }
+
+        // 🔧 개선된 슬라이더 내용 업데이트
+        function updateSliderContent() {
+            try {
+                if (photos.length === 0) return;
+                
+                const photo = photos[currentSliderIndex];
+                if (!photo) {
+                    console.error('❌ 슬라이더 사진을 찾을 수 없습니다:', currentSliderIndex);
+                    return;
+                }
+
+                const elements = {
+                    image: document.getElementById('slider-image'),
+                    title: document.getElementById('slider-title'),
+                    location: document.getElementById('slider-location'),
+                    date: document.getElementById('slider-date'),
+                    description: document.getElementById('slider-description'),
+                    counter: document.getElementById('slider-counter'),
+                    categoryIcon: document.getElementById('slider-category-icon'),
+                    categoryText: document.getElementById('slider-category-text')
+                };
+
+                if (elements.image) {
+                    elements.image.src = photo.url;
+                    
+                    // 🔧 개선된 이미지 로드 후 비율에 따른 스타일 적용
+                    elements.image.onload = function() {
+                        const aspectRatio = this.naturalWidth / this.naturalHeight;
+                        this.classList.remove('slider-image-portrait', 'slider-image-landscape', 'slider-image-panorama');
+                        
+                        if (aspectRatio < 0.8) {
+                            // 세로 사진
+                            this.classList.add('slider-image-portrait');
+                        } else if (aspectRatio > 2.0) {
+                            // 극단적인 가로 비율 (파노라마)
+                            this.classList.add('slider-image-panorama');
+                        } else {
+                            // 일반 가로 사진
+                            this.classList.add('slider-image-landscape');
+                        }
+                        
+                        console.log(`🎠 슬라이더 이미지 비율: ${aspectRatio.toFixed(2)}`);
+                    };
+                }
+                if (elements.title) elements.title.textContent = photo.title;
+                if (elements.location) elements.location.textContent = photo.location;
+                if (elements.date) elements.date.textContent = new Date(photo.date).toLocaleDateString('ko-KR');
+                if (elements.description) elements.description.textContent = photo.description || '이 사진과 함께한 특별한 순간의 기록입니다.';
+                if (elements.counter) elements.counter.textContent = `${currentSliderIndex + 1} / ${photos.length}`;
+                
+                // 카테고리 아이콘 및 텍스트 업데이트
+                if (photo.category === 'car') {
+                    if (elements.categoryIcon) elements.categoryIcon.textContent = '🚗';
+                    if (elements.categoryText) elements.categoryText.textContent = '자동차';
+                } else {
+                    if (elements.categoryIcon) elements.categoryIcon.textContent = '🏔️';
+                    if (elements.categoryText) elements.categoryText.textContent = '풍경';
+                }
+                
+                updateSliderDots();
+            } catch (error) {
+                console.error('❌ 슬라이더 내용 업데이트 오류:', error);
+            }
+        }
+
+        // 슬라이더 점들 생성
+        function createSliderDots() {
+            try {
+                const dotsContainer = document.getElementById('slider-dots');
+                if (!dotsContainer) {
+                    console.error('❌ 슬라이더 점 컨테이너를 찾을 수 없습니다.');
+                    return;
+                }
+                
+                dotsContainer.innerHTML = '';
+                
+                photos.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'w-2 h-2 rounded-full transition-all duration-300';
+                    dot.onclick = () => goToSliderPhoto(index);
+                    dotsContainer.appendChild(dot);
+                });
+                
+                updateSliderDots();
+            } catch (error) {
+                console.error('❌ 슬라이더 점 생성 오류:', error);
+            }
+        }
+
+        // 슬라이더 점들 업데이트
+        function updateSliderDots() {
+            try {
+                const dots = document.querySelectorAll('#slider-dots button');
+                dots.forEach((dot, index) => {
+                    if (index === currentSliderIndex) {
+                        dot.className = 'w-6 h-2 rounded-full bg-white transition-all duration-300';
+                    } else {
+                        dot.className = 'w-2 h-2 rounded-full bg-white/40 transition-all duration-300';
+                    }
+                });
+            } catch (error) {
+                console.error('❌ 슬라이더 점 업데이트 오류:', error);
+            }
+        }
+
+        // 슬라이더 자동 재생 시작
+        function startSliderAutoPlay() {
+            try {
+                if (sliderInterval) clearInterval(sliderInterval);
+                if (sliderAutoPlay && photos.length > 1) {
+                    sliderInterval = setInterval(() => {
+                        nextSliderPhoto();
+                    }, 4000);
+                }
+            } catch (error) {
+                console.error('❌ 슬라이더 자동 재생 시작 오류:', error);
+            }
+        }
+
+        // 다음 슬라이더 사진
+        function nextSliderPhoto() {
+            if (photos.length === 0) return;
+            currentSliderIndex = (currentSliderIndex + 1) % photos.length;
+            updateSliderContent();
+        }
+
+        // 이전 슬라이더 사진
+        function prevSliderPhoto() {
+            if (photos.length === 0) return;
+            currentSliderIndex = (currentSliderIndex - 1 + photos.length) % photos.length;
+            updateSliderContent();
+        }
+
+        // 특정 슬라이더 사진으로 이동
+        function goToSliderPhoto(index) {
+            if (index >= 0 && index < photos.length) {
+                currentSliderIndex = index;
+                updateSliderContent();
+            }
+        }
+
+        // 슬라이더 자동 재생 토글
+        function toggleSliderAutoPlay() {
+            try {
+                sliderAutoPlay = !sliderAutoPlay;
+                const playIcon = document.getElementById('slider-play-icon');
+                const pauseIcon = document.getElementById('slider-pause-icon');
+                
+                if (sliderAutoPlay) {
+                    if (playIcon) playIcon.style.display = 'none';
+                    if (pauseIcon) pauseIcon.style.display = 'block';
+                    startSliderAutoPlay();
+                } else {
+                    if (playIcon) playIcon.style.display = 'block';
+                    if (pauseIcon) pauseIcon.style.display = 'none';
+                    if (sliderInterval) {
+                        clearInterval(sliderInterval);
+                        sliderInterval = null;
+                    }
+                }
+            } catch (error) {
+                console.error('❌ 슬라이더 자동 재생 토글 오류:', error);
+            }
+        }
+
+        // 🔧 통계 업데이트
+        function updateStats() {
+            try {
+                console.log('📊 통계 업데이트 중...');
+                
+                const carPhotos = photos.filter(p => p.category === 'car');
+                const landscapePhotos = photos.filter(p => p.category === 'landscape');
+                const uniqueLocations = [...new Set(photos.map(p => p.location))].length;
+
+                const updateElement = (id, value) => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = value;
+                    }
+                };
+
+                updateElement('photo-count', `총 ${photos.length}장`);
+                updateElement('total-photos', photos.length);
+                updateElement('car-photos', carPhotos.length);
+                updateElement('landscape-photos', landscapePhotos.length);
+                updateElement('unique-locations', uniqueLocations);
+
+                console.log('✅ 통계 업데이트 완료!');
+            } catch (error) {
+                console.error('❌ 통계 업데이트 오류:', error);
+            }
+        }
+
+        // 🔧 타임라인 렌더링
+        function renderTimeline() {
+            try {
+                console.log('⏰ 타임라인 렌더링 중...');
+                
+                const container = document.getElementById('timeline-container');
+                if (!container) {
+                    console.error('❌ 타임라인 컨테이너를 찾을 수 없습니다.');
+                    return;
+                }
+                
+                // 기존 내용 제거 (타임라인 라인 제외)
+                const timelineItems = container.querySelectorAll('.relative.flex');
+                timelineItems.forEach(item => item.remove());
+                
+                if (photos.length === 0) {
+                    console.log('⚠️ 사진이 없어서 타임라인을 렌더링하지 않습니다.');
+                    return;
+                }
+                
+                const sortedPhotos = [...photos].sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                sortedPhotos.forEach((photo, index) => {
+                    const isLeft = index % 2 === 0;
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = `relative flex items-center mb-8 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`;
+                    
+                    const photoIndex = photos.findIndex(p => p.id === photo.id);
+                    
+                    timelineItem.innerHTML = `
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-4 border-purple-500 rounded-full z-10"></div>
+                        <div class="w-5/12 ${isLeft ? 'pr-8' : 'pl-8'}">
+                            <div class="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer rounded-lg overflow-hidden" onclick="openSlideshow(${photoIndex})">
+                                <div class="flex">
+                                    <div class="w-1/3">
+                                        <img src="${photo.url}" alt="${photo.title}" class="w-full h-24 object-cover" style="object-position: center;" loading="lazy">
+                                    </div>
+                                    <div class="w-2/3 p-4">
+                                        <h3 class="font-semibold text-gray-800 mb-1">${photo.title}</h3>
+                                        <div class="flex items-center text-sm text-gray-600 mb-1">
+                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                            <span>${photo.location}</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg>
+                                            <span>${new Date(photo.date).toLocaleDateString('ko-KR')}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(timelineItem);
+                });
+                
+                console.log('✅ 타임라인 렌더링 완료!');
+            } catch (error) {
+                console.error('❌ 타임라인 렌더링 오류:', error);
+            }
+        }
+
+        // 🔧 도시 목록 렌더링
+        function renderCities() {
+            try {
+                console.log('🏙️ 도시 목록 렌더링 중...');
+                
+                const grid = document.getElementById('cities-grid');
+                if (!grid) {
+                    console.error('❌ 도시 그리드를 찾을 수 없습니다.');
+                    return;
+                }
+                
+                grid.innerHTML = '';
+                
+                // 사진이 있는 도시만 표시
+                const citiesWithPhotos = travelCities.filter(city => city.photos > 0);
+                
+                citiesWithPhotos.forEach(city => {
+                    const cityCard = document.createElement('div');
+                    cityCard.className = 'overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 rounded-lg bg-white';
+                    
+                    cityCard.innerHTML = `
+                        <div class="h-32 bg-gradient-to-br ${city.color} flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <h3 class="text-2xl font-bold mb-1">${city.name}</h3>
+                                <p class="text-white/80 text-sm">${city.region}</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-sm">
+                                    ${city.photos}장의 사진
+                                </span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">주요 명소</h4>
+                                <div class="flex flex-wrap gap-1">
+                                    ${city.highlights.map(highlight => 
+                                        `<span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">${highlight}</span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    grid.appendChild(cityCard);
+                });
+                
+                console.log('✅ 도시 목록 렌더링 완료!', citiesWithPhotos.length, '개 도시');
+            } catch (error) {
+                console.error('❌ 도시 목록 렌더링 오류:', error);
+            }
+        }
+
+        // 🔧 탭 설정
+        function setActiveTab(tab) {
+            try {
+                console.log('🔄 탭 변경:', tab);
+                
+                activeTab = tab;
+                
+                // 탭 버튼 스타일 업데이트
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.className = 'tab-button rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800';
+                });
+                
+                const activeButton = document.getElementById(`tab-${tab}`);
+                if (activeButton) {
+                    if (tab === 'car') {
+                        activeButton.className = 'tab-button rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 text-white';
+                    } else if (tab === 'landscape') {
+                        activeButton.className = 'tab-button rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 bg-gradient-to-r from-orange-500 to-yellow-500 text-white';
+                    } else {
+                        activeButton.className = 'tab-button rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-500 text-white';
+                    }
+                }
+                
+                // 필터링된 사진 업데이트
+                filteredPhotos = tab === 'all' ? [...photos] : photos.filter(photo => photo.category === tab);
+                
+                // 카운트 업데이트
+                const updateCount = (id, count) => {
+                    const element = document.getElementById(id);
+                    if (element) element.textContent = count;
+                };
+                
+                updateCount('all-count', photos.length);
+                updateCount('car-count', photos.filter(p => p.category === 'car').length);
+                updateCount('landscape-count', photos.filter(p => p.category === 'landscape').length);
+                
+                renderGallery();
+                
+                console.log('✅ 탭 변경 완료!', filteredPhotos.length, '개 사진');
+            } catch (error) {
+                console.error('❌ 탭 설정 오류:', error);
+            }
+        }
+
+        // 🔧 개선된 Masonry 갤러리 렌더링
+        function renderGallery() {
+            try {
+                console.log('🖼️ Masonry 갤러리 렌더링 중...', filteredPhotos.length, '개 사진');
+
+                const grid = document.getElementById('gallery-grid');
+                const emptyState = document.getElementById('empty-state');
+                
+                if (!grid || !emptyState) {
+                    console.error('❌ 갤러리 요소를 찾을 수 없습니다.');
+                    return;
+                }
+                
+                if (filteredPhotos.length === 0) {
+                    grid.style.display = 'none';
+                    emptyState.style.display = 'block';
+                    return;
+                }
+                
+                grid.style.display = 'block';
+                emptyState.style.display = 'none';
+                grid.innerHTML = '';
+                
+                filteredPhotos.forEach((photo, index) => {
+                    const photoCard = document.createElement('div');
+                    photoCard.className = `masonry-item photo-card cursor-pointer fade-in-delay-${(index % 5) + 1}`;
+                    photoCard.onclick = () => openSlideshow(index);
+                    
+                    photoCard.innerHTML = `
+                        <div class="responsive-image-container">
+                            <img src="${photo.url}" 
+                                 alt="${photo.title}" 
+                                 class="responsive-image gallery-image" 
+                                 loading="lazy"
+                                 onload="handleImageLoad(this, ${JSON.stringify(photo).replace(/"/g, '&quot;')})"
+                                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'300\\' viewBox=\\'0 0 400 300\\'%3E%3Crect width=\\'400\\' height=\\'300\\' fill=\\'%23f3f4f6\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' dominant-baseline='middle\\' text-anchor='middle\\' font-family=\\'Arial, sans-serif\\' font-size=\\'16\\' fill=\\'%236b7280\\'%3E이미지 로드 실패%3C/text%3E%3C/svg%3E'; this.style.opacity='1'; this.style.visibility='visible';">
+                            
+                            <div class="photo-category-badge">
+                                ${photo.category === 'car' ? '🚗 자동차' : '🏔️ 풍경'}
+                            </div>
+                            
+                            <div class="photo-card-content">
+                                <h3 class="font-semibold text-lg mb-1">${photo.title}</h3>
+                                <div class="flex items-center text-sm text-gray-200 mb-1">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <span>${photo.location}</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-300">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <span>${new Date(photo.date).toLocaleDateString('ko-KR')}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    grid.appendChild(photoCard);
+                });
+                
+                console.log('✅ Masonry 갤러리 렌더링 완료!');
+            } catch (error) {
+                console.error('❌ 갤러리 렌더링 오류:', error);
+            }
+        }
+
+        // 슬라이드쇼 함수들
+        function openSlideshow(index) {
+            try {
+                if (index >= 0 && index < filteredPhotos.length) {
+                    currentSlideIndex = index;
+                    updateSlideshow();
+                    const modal = document.getElementById('slideshow-modal');
+                    if (modal) {
+                        modal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            } catch (error) {
+                console.error('❌ 슬라이드쇼 열기 오류:', error);
+            }
+        }
+
+        function closeSlideshow() {
+            try {
+                const modal = document.getElementById('slideshow-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
+                    isAutoPlay = false;
+                    updateAutoPlayButton();
+                }
+            } catch (error) {
+                console.error('❌ 슬라이드쇼 닫기 오류:', error);
+            }
+        }
+
+        function nextSlide() {
+            if (filteredPhotos.length === 0) return;
+            currentSlideIndex = (currentSlideIndex + 1) % filteredPhotos.length;
+            updateSlideshow();
+        }
+
+        function prevSlide() {
+            if (filteredPhotos.length === 0) return;
+            currentSlideIndex = (currentSlideIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+            updateSlideshow();
+        }
+
+        function updateSlideshow() {
+            try {
+                const photo = filteredPhotos[currentSlideIndex];
+                if (!photo) return;
+                
+                const updateElement = (id, value) => {
+                    const element = document.getElementById(id);
+                    if (element) element.textContent = value;
+                };
+                
+                const image = document.getElementById('slideshow-image');
+                if (image) {
+                    image.src = photo.url;
+                    
+                    // 이미지 로드 후 비율 확인
+                    image.onload = function() {
+                        const aspectRatio = this.naturalWidth / this.naturalHeight;
+                        if (aspectRatio < 0.8) {
+                            // 세로 사진인 경우
+                            this.classList.add('portrait-image');
+                        } else {
+                            this.classList.remove('portrait-image');
+                        }
+                    };
+                }
+                
+                updateElement('slideshow-title', photo.title);
+                updateElement('slideshow-location', photo.location);
+                updateElement('slideshow-date', new Date(photo.date).toLocaleDateString('ko-KR'));
+                updateElement('slide-counter', `${currentSlideIndex + 1} / ${filteredPhotos.length}`);
+            } catch (error) {
+                console.error('❌ 슬라이드쇼 업데이트 오류:', error);
+            }
+        }
+
+        function toggleAutoPlay() {
+            try {
+                isAutoPlay = !isAutoPlay;
+                if (isAutoPlay) {
+                    autoPlayInterval = setInterval(nextSlide, 3000);
+                } else {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
+                }
+                updateAutoPlayButton();
+            } catch (error) {
+                console.error('❌ 자동 재생 토글 오류:', error);
+            }
+        }
+
+        function updateAutoPlayButton() {
+            try {
+                const playIcon = document.getElementById('play-icon');
+                const pauseIcon = document.getElementById('pause-icon');
+                const button = document.getElementById('autoplay-button');
+                
+                if (isAutoPlay) {
+                    if (playIcon) playIcon.style.display = 'none';
+                    if (pauseIcon) pauseIcon.style.display = 'block';
+                    if (button) button.className = 'p-2 rounded-full transition-colors bg-white text-black';
+                } else {
+                    if (playIcon) playIcon.style.display = 'block';
+                    if (pauseIcon) pauseIcon.style.display = 'none';
+                    if (button) button.className = 'p-2 rounded-full transition-colors text-white hover:bg-white/20';
+                }
+            } catch (error) {
+                console.error('❌ 자동 재생 버튼 업데이트 오류:', error);
+            }
+        }
+
+        // 도시 모달 함수들
+        function showCitiesModal() {
+            try {
+                const modal = document.getElementById('cities-modal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            } catch (error) {
+                console.error('❌ 도시 모달 열기 오류:', error);
+            }
+        }
+
+        function hideCitiesModal() {
+            try {
+                const modal = document.getElementById('cities-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            } catch (error) {
+                console.error('❌ 도시 모달 닫기 오류:', error);
+            }
+        }
+
+        // 키보드 이벤트
+        document.addEventListener('keydown', function(e) {
+            try {
+                const modal = document.getElementById('slideshow-modal');
+                if (!modal || modal.style.display !== 'flex') return;
+                
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        prevSlide();
+                        break;
+                    case 'ArrowRight':
+                        nextSlide();
+                        break;
+                    case 'Escape':
+                        closeSlideshow();
+                        break;
+                    case ' ':
+                        e.preventDefault();
+                        toggleAutoPlay();
+                        break;
+                }
+            } catch (error) {
+                console.error('❌ 키보드 이벤트 오류:', error);
+            }
+        });
+
+        // 모달 외부 클릭 시 닫기
+        document.getElementById('cities-modal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideCitiesModal();
+            }
+        });
+
+        document.getElementById('slideshow-modal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSlideshow();
+            }
+        });
+    </script>
+</body>
+</html>
