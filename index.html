@@ -19,15 +19,13 @@
                 <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-md animate-pulse">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                 </div>
                 <div>
                     <h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">위치비교기</h1>
-                    <p class="text-xs text-gray-500 hidden sm:block">Place Comparer Dashboard</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-2">
+            <div>
                 <span id="global-counter" class="px-3 py-1 bg-white/60 border border-purple-200 rounded-full text-xs font-bold text-purple-600 shadow-sm">
                     현재 0 / 10개 장소
                 </span>
@@ -39,18 +37,21 @@
         
         <div class="lg:col-span-4 flex flex-col gap-6 order-2 lg:order-1">
             
-            <section class="bg-white/75 backdrop-blur-md shadow-xl rounded-2xl p-5 border border-white/40 animate-slide-up">
+            <section class="bg-white/75 backdrop-blur-md shadow-xl rounded-2xl p-5 border border-white/40 relative z-30 animate-slide-up">
                 <h2 class="text-sm font-bold text-gray-400 tracking-wider uppercase mb-3">장소 추가</h2>
                 <form id="search-form" class="flex gap-2">
                     <div class="relative flex-1">
-                        <input type="text" id="search-input" placeholder="장소명을 입력하세요 (예: 부산역)" 
-                               class="w-full pl-4 pr-10 py-3 bg-white/90 border border-gray-200 rounded-xl text-sm font-medium shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+                        <input type="text" id="search-input" placeholder="장소명을 입력하세요 (예: 서울역)" autocomplete="off"
+                               class="w-full pl-4 pr-10 py-3 bg-white/90 border border-gray-200 rounded-xl text-sm font-medium shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all">
                         <div id="loading-spinner" class="hidden absolute right-3 top-3.5 w-4 h-4 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
                     </div>
                     <button type="submit" class="px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-sm rounded-xl shadow-md hover:opacity-90 active:scale-95 transition-all flex-shrink-0">
-                        추가
+                        검색
                     </button>
                 </form>
+                
+                <div id="search-results-dropdown" class="hidden absolute left-5 right-5 mt-2 bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto z-50 divide-y divide-gray-100">
+                    </div>
                 
                 <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center">
                     <span class="text-xs text-gray-500">모든 데이터를 초기화하려면</span>
@@ -69,22 +70,16 @@
                 <div id="empty-state" class="flex-1 flex flex-col items-center justify-center text-center p-6">
                     <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-2">📍</div>
                     <p class="text-sm font-medium text-gray-500">추가된 장소가 없습니다.</p>
-                    <p class="text-xs text-gray-400 mt-1">상단에서 장소를 검색해 보세요.</p>
                 </div>
 
-                <ul id="place-list" class="hidden flex-1 overflow-y-auto space-y-2.5 max-h-[400px] pr-1">
-                    </ul>
+                <ul id="place-list" class="hidden flex-1 overflow-y-auto space-y-2.5 max-h-[400px] pr-1"></ul>
             </section>
         </div>
 
         <div class="lg:col-span-8 flex flex-col gap-6 order-1 lg:order-2">
-            
             <section class="bg-white/70 backdrop-blur-md shadow-xl rounded-2xl p-4 border border-white/50 h-[400px] sm:h-[500px] lg:h-[550px] flex flex-col map-container animate-scale-in">
                 <div class="flex items-center justify-between mb-2 px-1">
-                    <span class="px-2.5 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-[10px] font-bold tracking-wider">
-                        KOREA MAP VIEW
-                    </span>
-                    <span class="text-[10px] text-gray-400 font-mono">Polyline Status: Connected</span>
+                    <span class="px-2.5 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-[10px] font-bold tracking-wider">KOREA MAP VIEW</span>
                 </div>
                 <div id="map" class="w-full flex-1 bg-gray-50 rounded-xl border border-gray-200/80 shadow-inner overflow-hidden"></div>
             </section>
@@ -93,22 +88,18 @@
                 <div class="border-b border-gray-100 pb-3 mb-4">
                     <h2 class="text-sm font-bold text-gray-700 flex items-center gap-1.5">
                         <span>📏 장소 간 직선거리 계산기</span>
-                        <span class="px-2 py-0.5 bg-gray-100 border text-[10px] text-gray-500 rounded font-normal">Haversine 공식 적용</span>
                     </h2>
-                    <p class="text-xs text-gray-400 mt-0.5">※ 실제 도로 기준 길찾기 거리가 아닌 지도상 직선거리(km)입니다.</p>
                 </div>
-                
                 <div class="overflow-x-auto max-h-[220px] overflow-y-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="border-b border-gray-200 text-xs font-bold text-gray-400 tracking-wider">
                                 <th class="pb-2 w-2/5">출발지 ↔ 도착지</th>
-                                <th class="pb-2 w-2/5">좌표 정보 (위도, 경도)</th>
+                                <th class="pb-2 w-2/5">좌표 정보</th>
                                 <th class="pb-2 w-1/5 text-right">직선거리</th>
                             </tr>
                         </thead>
-                        <tbody id="distance-table-body" class="text-sm font-medium text-gray-600 divide-y divide-gray-50">
-                            </tbody>
+                        <tbody id="distance-table-body" class="text-sm font-medium text-gray-600 divide-y divide-gray-50"></tbody>
                     </table>
                 </div>
             </section>
