@@ -1,6 +1,6 @@
 /**
  * ====================================================================
- * 위치비교기 (Place Comparer) - 통합 검색, 순서 변경, 거리 토글 고도화 스크립트
+ * 위치비교기 (Place Comparer) - 통합 검색, 순서 변경, 거리/경로 토글 고도화 스크립트
  * ====================================================================
  */
 
@@ -11,7 +11,7 @@ const state = {
     placesService: null, // 카카오 장소(키워드) 검색 서비스 객체
     geocoderService: null, // 카카오 주소-좌표 변환 서비스 객체
     maxPlaces: 10,
-    showDistance: true   // [추가] 직선거리 화면 노출 여부 상태값
+    showDistance: true   // [추가] 직선거리 및 지도 선 노출 여부 상태값
 };
 
 const DEFAULT_MAP_CENTER = { lat: 36.2683, lng: 127.6358 };
@@ -203,7 +203,7 @@ function addNewPlaceItem(name, address, lat, lng) {
 }
 
 /**
- * [개선] 개별 장소 삭제 함수
+ * 개별 장소 삭제 함수
  */
 function deletePlace(id) {
     const targetIndex = state.places.findIndex(p => p.id === id);
@@ -220,7 +220,7 @@ function deletePlace(id) {
 }
 
 /**
- * [추가] 장소 순서를 위로 이동시키는 함수
+ * 장소 순서를 위로 이동시키는 함수
  */
 function moveUp(index) {
     if (index <= 0) return; 
@@ -233,7 +233,7 @@ function moveUp(index) {
 }
 
 /**
- * [추가] 장소 순서를 아래로 이동시키는 함수
+ * 장소 순서를 아래로 이동시키는 함수
  */
 function moveDown(index) {
     if (index >= state.places.length - 1) return; 
@@ -282,7 +282,7 @@ function setLoading(isLoading) {
 }
 
 /**
- * [고도화] 데이터 바인딩 기반 인터랙티브 UI 렌더러
+ * 데이터 바인딩 기반 인터랙티브 UI 렌더러
  */
 function updateUI() {
     const count = state.places.length;
@@ -358,16 +358,16 @@ function updateUI() {
         });
     }
 
-    // 선 경로 갱신
-    if (count >= 1) {
+    // [수정] 지도 상의 선 경로 및 노출 제어 통합 관리 구역
+    if (count >= 1 && state.showDistance) {
         const linePath = state.places.map(p => new kakao.maps.LatLng(p.lat, p.lng));
         state.polyline.setPath(linePath);
-        state.polyline.setMap(state.map);
+        state.polyline.setMap(state.map); // 조건 충족 시 지도에 선 연결
     } else {
-        state.polyline.setPath([]);
+        state.polyline.setMap(null); // 장소가 없거나 showDistance가 false인 경우 지도에서 완전히 제거
     }
 
-    // [고도화 반영] 직선거리 카드 표출 제어 및 온오프 토글 스위치 탑재 구역
+    // 직선거리 카드 표출 제어 및 온오프 토글 스위치 탑재 구역
     if (count >= 2) {
         distanceCard.classList.remove('hidden');
         
@@ -380,14 +380,13 @@ function updateUI() {
 
             const toggleBtn = document.createElement('button');
             toggleBtn.type = 'button';
-            // 디자인에 이질감이 없도록 연한 보라색 배경에 둥근 라운드 버튼 적용
             toggleBtn.className = "toggle-distance-btn ml-auto bg-purple-100 hover:bg-purple-200 text-purple-700 text-xs font-bold px-2.5 py-1 rounded-lg transition-colors cursor-pointer focus:outline-none";
-            toggleBtn.innerText = state.showDistance ? "👁️ 거리 숨기기" : "👁️‍🗨️ 거리 보기";
+            toggleBtn.innerText = state.showDistance ? "👁️ 거리+경로 숨기기" : "👁️‍🗨️ 거리+경로 보기";
             
             toggleBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 state.showDistance = !state.showDistance; // 상태 플래그 반전
-                updateUI(); // 재렌더링하여 하단 테이블 구역 가시성 조절
+                updateUI(); // 재렌더링하여 하단 테이블 및 지도 위의 직선 경로 실시간 제어
             });
             cardHeader.appendChild(toggleBtn);
         }
@@ -396,9 +395,9 @@ function updateUI() {
 
         // 상태값(state.showDistance) 온오프에 따라 테이블 컨테이너 영역 노출 제어
         if (!state.showDistance) {
-            tableContainer.classList.add('hidden'); // 접기(숨기기)
+            tableContainer.classList.add('hidden'); // 테이블 접기
         } else {
-            tableContainer.classList.remove('hidden'); // 펼치기(보기)
+            tableContainer.classList.remove('hidden'); // 테이블 펼치기
 
             let tableRowsHtml = '';
             for (let i = 0; i < count; i++) {
