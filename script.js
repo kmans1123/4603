@@ -10,8 +10,8 @@ const state = {
     polyline: null,      
     placesService: null, // 카카오 장소(키워드) 검색 서비스 객체
     geocoderService: null, // 카카오 주소-좌표 변환 서비스 객체
-    maxPlaces: 10,
-    showDistance: true   // [추가] 직선거리 및 지도 선 노출 여부 상태값
+    maxPlaces: 20,       // [변경] 최대 장소 개수를 10개에서 20개로 확장
+    showDistance: true   // 직선거리 및 지도 선 노출 여부 상태값
 };
 
 const DEFAULT_MAP_CENTER = { lat: 36.2683, lng: 127.6358 };
@@ -69,7 +69,7 @@ function initEventListeners() {
         if (!keyword) return;
 
         if (state.places.length >= state.maxPlaces) {
-            alert("최대 10개 장소까지만 추가할 수 있습니다.");
+            alert(`최대 ${state.maxPlaces}개 장소까지만 추가할 수 있습니다.`);
             searchInput.value = '';
             return;
         }
@@ -286,8 +286,9 @@ function setLoading(isLoading) {
  */
 function updateUI() {
     const count = state.places.length;
-    globalCounter.textContent = `현재 ${count} / 10개 장소`;
-    listCounter.textContent = `${count}/10`;
+    // [변경] 분모 숫자를 최대 개수(state.maxPlaces)에 맞게 동적 반영
+    globalCounter.textContent = `현재 ${count} / ${state.maxPlaces}개 장소`;
+    listCounter.textContent = `${count}/${state.maxPlaces}`;
 
     if (count === 0) {
         emptyState.classList.remove('hidden');
@@ -358,13 +359,13 @@ function updateUI() {
         });
     }
 
-    // [수정] 지도 상의 선 경로 및 노출 제어 통합 관리 구역
+    // 지도 상의 선 경로 및 노출 제어 통합 관리 구역
     if (count >= 1 && state.showDistance) {
         const linePath = state.places.map(p => new kakao.maps.LatLng(p.lat, p.lng));
         state.polyline.setPath(linePath);
-        state.polyline.setMap(state.map); // 조건 충족 시 지도에 선 연결
+        state.polyline.setMap(state.map); 
     } else {
-        state.polyline.setMap(null); // 장소가 없거나 showDistance가 false인 경우 지도에서 완전히 제거
+        state.polyline.setMap(null); 
     }
 
     // 직선거리 카드 표출 제어 및 온오프 토글 스위치 탑재 구역
@@ -385,8 +386,8 @@ function updateUI() {
             
             toggleBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                state.showDistance = !state.showDistance; // 상태 플래그 반전
-                updateUI(); // 재렌더링하여 하단 테이블 및 지도 위의 직선 경로 실시간 제어
+                state.showDistance = !state.showDistance; 
+                updateUI(); 
             });
             cardHeader.appendChild(toggleBtn);
         }
@@ -396,10 +397,12 @@ function updateUI() {
         // 상태값(state.showDistance) 온오프에 따라 테이블 컨테이너 영역 노출 제어
         if (!state.showDistance) {
             tableContainer.classList.add('hidden'); // 테이블 접기
+            distanceTableBody.innerHTML = '';      // [성능 최적화] 숨김 상태일 때는 내부 계산 루프를 돌리지 않고 청소
         } else {
             tableContainer.classList.remove('hidden'); // 테이블 펼치기
 
             let tableRowsHtml = '';
+            // [연산 최적화 적용] 20개 장소 대응 이중 포문 실행
             for (let i = 0; i < count; i++) {
                 for (let j = i + 1; j < count; j++) {
                     const p1 = state.places[i];
